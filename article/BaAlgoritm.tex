@@ -1,0 +1,283 @@
+%% LyX 2.0.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,a4paper]{article}
+\usepackage{amstext}
+\usepackage{graphicx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{rotating}
+
+%% PGF is a TeX macro package for generating graphics. It is platform- and format-independent and works together with the most important TeX backend drivers, including pdftex and dvips. It comes with a user-friedly syntax layer called TikZ.
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,chains}
+
+%For psuedo code
+\usepackage[ruled,vlined]{algorithm2e}
+\newcommand{\bayeser}{{\tt parallel bayes}\xspace}
+\newcommand{\tover}{{\tt TOV}\xspace}
+
+\makeatother
+
+\begin{document}
+\tableofcontents
+\begin{center}
+Algorithm and parallelization of the software for
+\par\end{center}
+
+\begin{center}
+{Bayesian analysis of hybrid EoS constraints with mass-radius
+data for compact stars }
+\end{center}
+
+\begin{center}
+A.~Ayriyan$^{a}$ , H.~Grigorian$^{a,c}$, G.Poghosyan$^{b}$
+\par\end{center}
+
+\begin{center}
+{\small $^{a}$ Laboratory of Information Technologies, JINR
+Dubna, Russia}\\
+ {\small $^{b}$ }Steinbuch Centre for Computing, Karlsruhe
+Institute of Technology, Germany\\
+ {\small $^{c}$ Department of Physics, Yerevan State University,
+Armenia} \\
+
+\end{center}
+
+\centerline{{Abstract} }
+The algorithm, design and the schema
+of parallelization of the code for {the newly suggested Bayesian
+analysis using disjunct mass and radius constraints for extracting
+probability measures for cold, dense nuclear matter equations of state}
+is discussed.{ }
+
+
+
+\section{\label{sec:intro}Introduction}
+\input{intro}
+\section{Algorithm of the BA }
+\input{algo}
+
+\section{Parallelisation}
+\input{parall}
+
+\section{Conclusion and Outlook}
+-full size problem solution for püre ToV at 0
+
+-estimation for cooling
+
+-estimation for rotation
+
+-MonteCarlo: a way to reduce computation amount, but not applicable for correct bayes as of sum will not be full and for all region
+
+\section{Acknowledgment}
+
+\begin{thebibliography}{10}
+
+\bibitem{Miller:2013tca}
+ M.~C.~Miller.{Astrophysical
+Constraints on Dense Matter in Neutron Stars.}{ {[}}\texttt{arXiv:1312.0029
+{[}astro-ph.HE{]}}{{]}.}
+
+{\bibitem{Lindblom1984} L.~Lindblom. }{Limits on the
+Gravitational Redshift from Neutron Stars.}{ The Astrophysical
+Journal (1984), vol.~278, 364-368.}
+
+
+{\bibitem{Steiner:2010fz} A.~W.~Steiner, J.~M.~Lattimer
+and E.~F.~Brown. }{The Equation of State from Observed Masses
+and Radii of Neutron Stars.}{ The Astrophysical Journal (2010),
+vol.~{722}, 33. % [arXiv:1005.0811 [astro-ph.HE]].
+}
+
+
+{%\cite{Alvarez-Castillo:2014xea}
+}
+
+{\bibitem{Alvarez-Castillo:2014xea} D.~Alvarez-Castillo,
+A.~Ayriyan, D.~Blaschke and H.~Grigorian. }{Bayesian Analysis
+of Hybrid EoS based on Astrophysical Observational Data.}{
+LIT Scientific Report 2011-2013, JINR Publishing Department, Dubna
+(2014) pp. 123-126. Editors: Gh. Adam, V.V. Korenkov, D.V. Podgainy,
+T.A. Strizh, P.V. Zrelov. ISBN 978-5-9530-0381-0. %  [arXiv:1408.4449 [astro-ph.HE]].
+ %%CITATION = ARXIV:1408.4449;%%
+}
+
+
+{%\cite{Blaschke:2014via}
+}
+
+{\bibitem{Blaschke:2014via} D.~B.~Blaschke, H.~A.~Grigorian,
+D.~E.~Alvarez-Castillo and A.~S.~Ayriyan. }{Mass and radius
+constraints for compact stars and the QCD phase diagram.}{
+J.\ Phys.\ Conf.\ Ser.\ (2014) vol.~{496}, p.~012002. {[}}\texttt{arXiv:1402.0478
+{[}astro-ph.HE{]}}{{]}. %%CITATION = ARXIV:1402.0478;%%
+}
+
+
+{%\cite{Demorest:2010bx}
+}
+
+{\bibitem{Demorest:2010bx} P.~Demorest, T.~Pennucci, S.~Ransom,
+M.~Roberts and J.~Hessels, }{Shapiro Delay Measurement of
+A Two Solar Mass Neutron Star.}{ Nature (2010), vol.~467,
+p.~1081. %[arXiv:1010.5788 [astro-ph.HE]].
+ %%CITATION = ARXIV:1010.5788;%%
+}
+
+{\bibitem{Antoniadis:2013pzd} J.~Antoniadis, P.~C.~C.~Freire,
+N.~Wex, T.~M.~Tauris, R.~S.~Lynch, M.~H.~van~Kerkwijk, M.~Kramer,
+C.~Bassa, V.~S.~Dhillon, T.~Driebe, J.~W.~T.~Hessels, V.~M.~Kaspi,
+V.~I.~Kondratiev, N.~Langer, T.~R.~Marsh, M.~A.~McLaughlin,
+T.~T.~Pennucci, S.~M.~Ransom, I.~H.~Stairs, J.~van~Leeuwen,
+J.~P.~W.~Verbiest, D.~G.~Whelan. }{A Massive Pulsar in
+a Compact Relativistic Binary.}{ Science (2013), vol.~340,
+p.~6131. %; doi: 10.1126/science.1233232.
+}
+
+{\bibitem{Tolman:1939jz} R.~C.~Tolman. }{Static Solutions
+of Einstein's Field Equations for Spheres of Fluid.}{ Physical
+Review (1939), vol.~55, p.~364.}
+
+
+{%\cite{Oppenheimer:1939ne}
+}
+
+{\bibitem{Oppenheimer:1939ne} J.~R.~Oppenheimer and G.~M.~Volkoff,
+}{On Massive neutron cores.}{ Physical Review (1939),
+vol.~55, p.~374. %%CITATION = PHRVA,55,374;%%
+}
+
+{\bibitem{Glendenning:1997wn} N.~K.~Glendenning. }{Compact
+stars: nuclear physics, particle physics, and general relativity.}{
+New York: Springer, 2000.}
+
+
+{%\cite{Alford:2013aca}
+}
+
+{\bibitem{Alford:2013aca} M.~G.~Alford, S.~Han and M.~Prakash.
+}{Generic conditions for stable hybrid stars.}{ Physical
+Review D (2013), vol.~88, no. 8, p.~083013. % [arXiv:1302.4732 [astro-ph.SR]].
+ %%CITATION = ARXIV:1302.4732;%%
+ %14 citations counted in INSPIRE as of 17 Aug 2014
+}
+
+{\bibitem{Zdunik:2012dj} J.L.~Zdunik and P.~Haensel. }{Maximum
+mass of neutron stars and strange neutron-star cores.}{ Astronomy
+and Astrophysics (2013), vol.~551, p.~A61.}
+
+
+{%\cite{Klahn:2006iw}
+}
+
+{\bibitem{Klahn:2006iw} T.~Klähn, D.~Blaschke, F.~Sandin,
+C.~Fuchs, A.~Faessler, H.~Grigorian, G.~Röpke and J.~Trümper,
+}{Modern compact star observations and the quark matter equation
+of state.}{ Phys.\ Lett.\ B 654, 170 (2007). %  [nucl-th/0609067].
+ %%CITATION = NUCL-TH/0609067;%%
+}
+
+
+{%\cite{Klahn:2013kga}
+}
+
+{\bibitem{Klahn:2013kga} T.~Klähn, R.~{L}astowiecki and
+D.~B.~Blaschke. }{Implications of the measurement of pulsars
+with two solar masses for quark matter in compact stars and heavy-ion
+collisions: A Nambu--Jona-Lasinio model case study.}{ Physical
+Review D (2013), vol.~{88}, no. 8, 085001. %  [arXiv:1307.6996].
+ %%CITATION = ARXIV:1307.6996;%%
+}
+
+{\bibitem{Akmal:1998cf} A.~Akmal, V.~R.~Pandharipande,
+and D.~G.~Ravenhall. }{Equation of state of nucleon matter
+and neutron star structure.}{ Physical Review~C (1998), vol.~58,
+no.~3, pp.~1803-1838.}
+
+
+{%\cite{Typel:1999yq}
+}
+
+{\bibitem{Typel:1999yq} S.~Typel and H.~H.~Wolter. }{Relativistic
+mean field calculations with density dependent meson nucleon coupling.}{
+Nuclear Physics A (1999), vol.~{656}, 331. %%CITATION = NUPHA,A656,331;%%
+}
+
+
+{%\cite{Typel:2009sy}
+}
+
+{\bibitem{Typel:2009sy} S.~Typel, G.~Röpke, T.~Klähn, D.~Blaschke
+and H.~H.~Wolter. }{Composition and thermodynamics of nuclear
+matter with light clusters}{. Physical Review~C (2010), vol.~81,
+p.~015803. %  [arXiv:0908.2344 [nucl-th]].
+ %%CITATION = ARXIV:0908.2344;%%
+}
+
+
+{%\cite{Benic:2014jia}
+}
+
+{\bibitem{Benic:2014jia} S.~Benic, D.~Blaschke, D.~E.~Alvarez-Castillo,
+T.~Fischer and S.~Typel. }{A new quark-hadron hybrid equation
+of state for astrophysics - I. High-mass twin compact stars.}{
+Astronomy and Astrophysics (2014), (submitted); {[}}\texttt{arXiv:1411.2856
+{[}astro-ph.HE{]}}{{]}. %%CITATION = ARXIV:1411.2856;%%
+}
+
+{\bibitem{Bogdanov:2012md} S.~Bogdanov. }{The Nearest
+Millisecond Pulsar Revisited with XMM-Newton: Improved Mass-radius
+Constraints for PSR~J0437-4715.}{ The Astrophysical Journal
+(2013), vol.~762, iss.~2, pp.~96.}
+
+
+{%\bibitem{Hambaryan:2014}
+% H.~Hambaryan, R.~Neuh\"auser, V.~Suleimanov, K.~Werner.
+%{\it Observational constraints of the compactness of isolated neutron stars.}
+% Journal of Physics: Conference Series 496 (2014) 012015, IOP Publishing.
+}
+
+
+{%\cite{Kitaura:2005bt}
+}
+
+{\bibitem{Kitaura:2006bt} F.S.~Kitaura, H.-Th.~Janka and
+W.~Hillebrandt. }{Explosions of O-Ne-Mg cores, the Crab supernova,
+and subluminous type II-P supernovae.}{ Astronomy and Astrophysics
+(2006), vol.~450, no.~1, pp.~345-350.}
+
+
+{%\cite{Podsiadlowski:2005ig}
+}
+
+{\bibitem{Podsiadlowski:2005ig} P.~Podsiadlowski, J.~D.~M.~Dewi,
+P.~Lesaffre, J.~C.~Miller, W.~G.~Newton and J.~R.~Stone, }{The
+Double pulsar J0737-3039: Testing the neutron star equation of state.}{
+Monthly Notices of the Royal Astronomical Society (2005), vol.~361,
+p.~1243. %[astro-ph/0506566].
+ %%CITATION = ASTRO-PH/0506566;%%
+ %47 citations counted in INSPIRE as of 04 Dec 2013
+}
+
+{\bibitem{Blaschke:2013rma} D.~Blaschke, D.E.~Alvarez-Castillo,
+S.~Benic, G. Contrera, R. Lastowiecki. }{Nonlocal PNJL models
+and heavy hybrid stars.}{ PoS ConfinementX (2012), 249; {[}}\texttt{arXiv:1302.6275
+{[}hep-ph{]}}{{]}. %(2013), 8~p.
+}
+
+{\bibitem{Blaschke:2013ana} D.~Blaschke, D.~E.~Alvarez-Castillo
+and S.~Benic, }{Mass-radius constraints for compact stars
+and a critical endpoint.}{ PoS CPOD {2013} (2013), 063; {[}}\texttt{arXiv:1310.3803
+{[}nucl-th{]}}{{]}. %%CITATION = ARXIV:1310.3803;%%
+ %8 citations counted in INSPIRE as of 22 Aug 2014
+}
+\end{thebibliography}
+
+\end{document}

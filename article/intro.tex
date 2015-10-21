@@ -1,0 +1,219 @@
+{One of the question of the compact stars phsics is the discussions
+of deconfinement transition in the cores of stars and whether it proceeds
+as a crossover or rather as a first order transition. This question
+is relevant for the problem of existence of a critical endpoint in
+the QCD phase diagram, which is actual in present and upcoming heavy-ion
+collision experiments.}
+
+{The most basic features of a neutron star (NS) are the radius
+$R$ and the mass $M$ which so far have not been well determined
+simultaneously for a single object. In some cases masses are precisely
+measured like in the case of binary systems, but radii are quite uncertain
+\cite{Miller:2013tca}. In the other hand, for isolated neutron stars
+some radius and mass measurements exist but lack the necessary precision
+to allow conclusions about their interiors. In fact, it has been conjectured
+that there exists a unique relation between $M$ and $R$ for all
+neutron stars and their equation of state (EoS), thus constraining
+the properties of their interior \cite{Lindblom1984}. For this reason,
+accurate observations of masses and radii are crucial to study cold
+dense nuclear matter expected to exist in neutron stars.}
+
+{However, the presently observational data allow to make only
+a probabilistic estimations of the internal structure of the star,
+via Bayesian analysis (BA). This technique has been applied for the
+first time to this problem by Steiner et al. \cite{Steiner:2010fz}
+who exemplified very well the power of this method. In their analysis,
+however, only a particular type of objects (X-ray bursters) has been
+considered under strongly model dependent assumptions. In this work
+is a continuation of our preliminary probabilistic studies of the
+superdense stellar matter equation of state using Bayesian Analysis
+and modeling of relativistic configurations of neutron stars \cite{Alvarez-Castillo:2014xea,Blaschke:2014via}
+We put special emphasis on the choice of observational constraints
+and focus on investigations of the possible existence of deconfined
+quark matter in massive neutron stars such as the recently observed
+$2~M_{\odot}$ pulsars \cite{Demorest:2010bx,Antoniadis:2013pzd}.}
+
+The steps to archive the goals of modeling and implementing of the BA
+are the following
+
+
+\subsection{Making a the Star configuration from given EoS}
+
+{The microscopical properties of compact stars are modeled
+in the framework of general relativity, where the Einstein equations
+are solved for a static (non-rotating), spherical star resulting in
+the Tolman--Oppenheimer--Volkoff (TOV) equations \cite{Tolman:1939jz,Oppenheimer:1939ne,Glendenning:1997wn}
+\begin{eqnarray}
+\frac{dm(r)}{dr} & = & 4\pi r^{2}\varepsilon(r)\\
+\frac{dp(r)}{dr} & = & -G\frac{(\varepsilon(r)+p(r))(m(r)+4\pi p(r)r^{3})}{r(r-2Gm(r))}\label{TOV1}
+\end{eqnarray}
+as well as the equation for the baryon number profile
+\begin{equation}
+\frac{dn_{B}(r)}{dr}=4\pi r^{2}m_{N}\frac{n_{B}(r)}{\sqrt{1-2Gm(r)/r}}~.
+\end{equation}
+These equations are integrated from the center of the star towards
+its surface, with the radius of the star $R$ being defined by the
+condition $p(R)=0$ and the gravitational mass by $M=m(R)$. In a
+similar manner, the baryon mass of the star is given by $M_{B}=m_{N}n_{B}(R)$,
+where $m_{N}$ is the nucleon mass.}
+
+{To complete the solution to the TOV equations the EoS is required.
+It is given by the relation $p=p(\varepsilon)$ which carries information
+about the microscopic ingredients of the dense nuclear matter, as
+mentioned before. Thus, the above equations have to be solved simultaneously
+using the equation of state under boundary conditions at the star
+centre ($r=0$), taken as an input. In this way, for a given value
+of $\varepsilon(r=0)$ the solution of the TOV equations are the $p(r)$
+and $m(r)$ profiles and with them the parametric relationship $M(R)$
+can be obtained.}
+
+{%\section{The chosen EoS}
+For the present study we use the scheme suggested by Alford, Han and
+Prakash~\cite{Alford:2013aca} for defining the hybrid EoS (shorthand:
+AHP scheme),
+\begin{equation}
+p(\varepsilon)=p_{h}(\varepsilon)\Theta(\varepsilon_{H}-\varepsilon)+p_{h}(\varepsilon_{H})\Theta(\varepsilon-\varepsilon_{H})\Theta(\varepsilon_{H}+\Delta\varepsilon-\varepsilon)+p_{q}(\varepsilon)\Theta(\epsilon-\epsilon_{H}-\Delta\epsilon),
+\end{equation}
+where $p_{h}(\varepsilon)$ is a hadronic matter EoS and $p_{q}(\varepsilon)$
+represents the high density matter phase, here considered as deconfined
+quark matter with the bag model type EoS
+\begin{equation}
+p_{q}(\varepsilon)=c_{q}^{2}\varepsilon-B.
+\end{equation}
+The stiffness of this EoS is given by $c_{q}^{2}$, the squared speed
+of sound. The positive bag constant $B$ assures confinement, i.e.
+the dominance of the hadronic EoS at low densities. Note that a parametrization
+in this form by Haensel et al.~\cite{Zdunik:2012dj} describes pretty
+well the superconducting NJL model derived in~\cite{Klahn:2006iw}
+and systematically explored in~\cite{Klahn:2013kga}. In the AHP
+scheme, the hadronic EoS is fixed and not subject to parametric variations.
+However, we shall use different well-known model EoS in our study
+the nonrelativistic variational EoS of Akmal et al. \cite{Akmal:1998cf}
+(APR) and the density-dependent relativistic meanfield EoS of Typel
+and Wolter \cite{Typel:1999yq} (DD2) in its parametrization from
+Ref.~\cite{Typel:2009sy}. Both EoS come eventually with extensions
+due to an excluded volume for baryons, as described for DD2 in \cite{Benic:2014jia}.
+}
+
+
+{The free parameters of the model are the transition density
+$\varepsilon_{H}$, the energy density jump $\Delta\varepsilon\equiv\gamma\varepsilon_{H}$
+and $c_{q}^{2}$. The set of hybrid EoS in the plane pressure versus
+energy density is shown in Fig.~\ref{APH_Scheme} for APR as the
+hadronic EoS. %without (left panel) and with (right panel) baryonic excluded volume for the variation
+%of the set of input parameters as described in the next section.
+}
+
+
+\subsection{BA Formulation and Formalization}
+
+{We define the vector of free parameters $\overrightarrow{\pi}\left(\varepsilon_{c},\gamma,{c}_{q}^{2}\right)$
+%, where $\varepsilon_H$ is the critical value of energy density at the onset of the phase
+%transition (PhT), $\gamma = \Delta epsilon / \epsilon_H$
+%is a ratio of the energy density jump at the PhT to the critical one, and ${c}_{q}^{2}$
+%is square of speed of sound in quark matter.
+defining the hybrid EoS with a first order phase transition from nuclear
+to quark matter. %The nuclear equation of state can be taken~APR~\cite{Akmal1998}.
+}
+
+{These parameters are sampled
+\begin{equation}
+\pi_{i}=\overrightarrow{\pi}\left(\varepsilon_{k},\gamma_{l},{{c}_{q}^{2}}_{m}\right),\label{pi_vec}
+\end{equation}
+where $i=0\dots N-1$ (here $N=N_{1}\times N_{2}\times N_{3}$) as
+$i=N_{1}\times N_{2}\times k+N_{2}\times l+m$ and $k=0\dots N_{1}-1$,
+$l=0\dots N_{2}-1$, $m=0\dots N_{3}-1$, here $N_{1}$, $N_{2}$
+and $N_{3}$ denote the number of parameters for $\varepsilon_{k}$,
+$\gamma_{l}$ and ${{c}_{q}^{2}}_{m}$, respectively. Solving the
+TOV equations with varying boundary conditions for $\varepsilon(r=0)$
+generates a sequence of $M(R)$ curves characteristic for each of
+these $N$ EoS. Subsequently, different neutron star observations
+with their error margins can be used to assign a probability to each
+choice in from the set of EoS parameters. We use three constraints:
+(i) the mass constraint for PSR J0348+0432~\cite{Antoniadis:2013pzd},
+(ii) the radius constraint for PSR J0437-4715~\cite{Bogdanov:2012md}
+and (iii) the constraint on the baryon mass at the well measured gravitational
+mass for the star B in the double pulsar system PSR J0737-3039~\cite{Kitaura:2006bt},
+which improved the earlier suggestion by Podsiadlowski et al.~\cite{Podsiadlowski:2005ig}.}
+
+{The goal is to find the set of most probable $\pi_{i}$ based
+on given constraints using Bayesian Analysis (BA). For initializing
+BA we propose that }{a priori}{ each vector of parameter
+$\pi_{i}$ has probability equal one: $P\left(\pi_{i}\right)=1$ for
+$\forall i$.}
+
+
+\subsection{Inputs from Observations}
+
+
+\subsubsection{Mass constraint for PSR~J0348+0432}
+
+{We propose that the error of this measurement is normal distributed
+$\mathcal{N}(\mu_{A},\sigma_{A}^{2})$, where $\mu_{A}=2.01~\mathrm{M_{\odot}}$
+and $\sigma_{A}=0.04~\mathrm{M_{\odot}}$ are measured for PSR~J0348+0432~\cite{Antoniadis:2013pzd}.
+Using this assumption we can calculate conditional probability of
+the event $E_{A}$ that the mass of the neutron star corresponds to
+this measurement
+\begin{equation}
+P\left(E_{A}\left|\pi_{i}\right.\right)=\Phi(M_{i},\mu_{A},\sigma_{A}),\label{p_anton}
+\end{equation}
+where $M_{i}$ is the maximum mass obtained for $\pi_{i}$ and $\Phi(x,\mu,\sigma)$
+is the cumulative distribution function for the normal distribution.
+%\begin{equation}
+%\label{Laplas}
+%\Phi(x, \mu, \sigma) = \frac{1}{2}\left[1+\erf\left(\frac{x-\mu}{\sqrt{2\sigma^2}}\right)\right].
+%\end{equation}
+}
+
+
+\subsubsection{Radius constraint for PSR~J0437-4715}
+
+{Recently, a radius constraint for the nearest millisecond
+pulsar PSR~J0437-4715 have been obtained~\cite{Bogdanov:2012md}
+giving $\mu_{B}=15.5~\mathrm{km}$ and $\sigma_{B}=1.5~\mathrm{km}$.
+With these data one calculates the conditional probability of the
+event $E_{B}$ that the radius of a neutron star corresponds to this
+measurement
+\begin{equation}
+P\left(E_{B}\left|\pi_{i}\right.\right)=\Phi(R_{i},\mu_{B},\sigma_{B}).\label{p_bogdan}
+\end{equation}
+%A similar constraint has been reported for RX J1856.5-3754 by Hambaryan et
+%al.~\cite{Hambaryan:2013}.
+}
+
+
+\subsubsection{$M$--$M_{B}$ Relation Constraint for PSR J0737-3039(B)}
+
+{This constraint gives a region in the $M$--$M_{B}$ plane.
+We need to estimate the probability of a point ${\cal M}_{i}=\left({M}_{i},{M_{B}}_{i}\right)$
+to be close to the point $\mu=\left(\mu_{G},\mu_{B}\right)$. The
+mean values $\mu_{G}=1.249$, $\mu_{B}=1.36$ and standard deviations
+$\sigma_{M}=0.001$, $\sigma_{M_{B}}=0.002$ are given in \cite{Kitaura:2006bt}.
+The probability can be calculated by following formula:
+\begin{equation}
+P\left(E_{K}\left|\pi_{i}\right.\right)=\left[\Phi\left(\xi_{G}\right)-\Phi\left(-\xi_{G}\right)\right]\cdot\left[\Phi\left(\xi_{B}\right)-\Phi\left(-\xi_{B}\right)\right],\label{p_kitaura}
+\end{equation}
+where $\Phi\left(x\right)=\Phi\left(x,0,1\right)$, $\xi_{G}={\displaystyle \frac{\sigma_{M}}{d_{M}}}$
+and $\xi_{B}={\displaystyle \frac{\sigma_{M_{B}}}{d_{M_{B}}}}$, $d_{M}$
+and $d_{M_{B}}$ are absolute values of components of vector $\mathrm{{d}}=\mathrm{{\bf \mu}}-\mathrm{{M}}_{i}$,
+here $\mathrm{{\bf \mu}}=\left(\mu_{G},\mu_{B}\right)^{T}$ was given
+in \cite{Kitaura:2006bt} and $\mathrm{{M}}_{i}=\left({M}_{i},{M_{B}}_{i}\right)^{T}$
+stems for the solution of TOV equations for the $i^{\mathrm{th}}$
+vector of EoS parameters $\pi_{i}$. Note that formula (\ref{p_kitaura})
+does not correspond to a multivariate normal distribution.}
+
+
+\subsection{Calculation of {a posteriori} Probabilities}
+
+{Note, that these measurements are independent on each other.
+Therefore, the complete conditional probability of the event that
+a compact object constructed with an EoS characterized by $\pi_{i}$
+fulfils all constraints is
+\begin{equation}
+P\left(E\left|\pi_{i}\right.\right)=P\left(E_{A}\left|\pi_{i}\right.\right)\times P\left(E_{B}\left|\pi_{i}\right.\right)\times P\left(E_{K}\left|\pi_{i}\right.\right).\label{p_event}
+\end{equation}
+Now, we can calculate probability of $\pi_{i}$ using Bayes' theorem:
+\begin{equation}
+P\left(\pi_{i}\left|E\right.\right)=\frac{P\left(E\left|\pi_{i}\right.\right)P\left(\pi_{i}\right)}{\sum\limits _{j=0}^{N-1}P\left(E\left|\pi_{j}\right.\right)P\left(\pi_{j}\right)}.\label{pi_apost}
+\end{equation}
+}

@@ -1,0 +1,63 @@
+
+{We apply the scheme of BA for probabilistic estimation of
+the EoS given by vector parameter $\vec{\pi}$. Varying the three
+parameters in the intervals $400<\varepsilon[\mathrm{MeV/fm^{3}}]<1200$,
+$0<\gamma<1.5$ and $0.3<{c}_{s}^{2}<1.0$ with $N_{1}=N_{2}=N_{3}=13$
+we explore a set of $N=2197$ hybrid EoS for each choice of hadronic
+EoS. \cite{Blaschke:2013rma,Blaschke:2013ana,Benic:2014jia}).}
+
+{Note that the occurrence of high-mass twins is testable by
+observations. It requires precise radius measurements of 2M$_{\odot}$
+pulsars in order to verify the existence of an almost horizontal branch
+of high-mass pulsars with almost the same mass but radii differing
+by up to a few kilometers. As a necessary condition for such sequences
+the hadronic star sequence should have radii exceeding $12$ km. The
+observation of this striking high-mass twin phenomenon would indicate
+a strong first-order phase transition in neutron star matter which
+gives important constraints for searches of a critical endpoint in
+the QCD phase diagram.}
+
+Fig.~\ref{flow:bayeser}...
+
+(see the Algorithm \ref{algomaster})
+
+{\small
+\begin{algorithm}[auto]
+\label{algomaster}
+ \caption{Algorithm for initialization, domain decomposition and bookkeeping}
+	\SetAlgoLined
+	\KwData{{\tt MASTER} rank}
+	\KwResult{Preparation of parallel simulations}
+	Read and sort the band table\;
+	Initializing the bookkeeping\;
+	Define the domains as groups\;
+	\While{infinitely}
+	{
+	Check and count free slaves\;
+	\If{not enough free slaves}{go into waiting state}
+	Check bookkeeping for bands to run\;
+	\eIf{all groups fit}
+		{
+		\For{each group}
+			{
+			Send group size and band value to slaves\;
+			Create new communicators\;
+			Set the slaves as busy\;
+			Set the groups as submitted\;
+			}
+		}
+		{\eIf{biggest group does not fit}
+			{Stop simulation\;}
+			{\eIf{{\tt SLAVE}s are busy}
+				{
+				Go into waiting state\;
+				Finished message received\;
+				Set slaves free\;
+				}
+%				\tcc{Queue empty and all Slaves are free}
+				{Finish simulation}
+			}
+		}
+    }
+\end{algorithm}
+}
